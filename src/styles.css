@@ -18,7 +18,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -165,12 +166,14 @@ label span {
   font-size: 13px;
 }
 
-input {
+input,
+select {
   width: 100%;
   min-height: 42px;
   border-radius: 7px;
   border: 1px solid var(--border);
   padding: 0 12px;
+  background: #ffffff;
 }
 
 .records {
@@ -206,6 +209,284 @@ input {
   margin: 0;
   color: #526071;
   line-height: 1.6;
+}
+
+/* ---- 拼车席位台 ---- */
+
+.notice {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.notice.ok {
+  background: color-mix(in srgb, var(--primary) 8%, #ffffff);
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+  color: var(--primary);
+}
+
+.notice.error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.stack {
+  display: grid;
+  gap: 12px;
+}
+
+.gap-top {
+  margin-top: 26px;
+}
+
+.chip.on {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.trips {
+  display: grid;
+  gap: 16px;
+}
+
+.trip {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  background: #fbfdff;
+  display: grid;
+  gap: 14px;
+}
+
+.trip header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+}
+
+.trip h3 {
+  margin: 0 0 6px;
+}
+
+.trip header p {
+  margin: 0;
+  color: #526071;
+  font-size: 14px;
+}
+
+.trip-ops {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+button.small {
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 13px;
+}
+
+button.danger {
+  color: #b91c1c;
+  border-color: #fecaca;
+  background: #fff7f7;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.edit-box {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 14px;
+  border: 1px dashed color-mix(in srgb, var(--accent) 55%, var(--border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 6%, #ffffff);
+}
+
+.edit-ops {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+}
+
+.seats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.seat {
+  min-width: 74px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: 1px dashed var(--border);
+  color: #94a3b8;
+  font-size: 13px;
+  text-align: center;
+}
+
+.seat.taken {
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+  background: color-mix(in srgb, var(--primary) 10%, #ffffff);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.ticket-list {
+  display: grid;
+  gap: 8px;
+}
+
+.ticket {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1.2fr) minmax(0, 0.8fr) auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+.ticket .cage {
+  color: var(--secondary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ticket .ring {
+  font-weight: 700;
+}
+
+.ticket .owner,
+.ticket .trip-name {
+  color: #526071;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticket .ops {
+  display: flex;
+  gap: 8px;
+  justify-content: end;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge.st-confirmed {
+  background: color-mix(in srgb, var(--primary) 12%, #ffffff);
+  color: var(--primary);
+}
+
+.badge.st-waitlisted {
+  background: color-mix(in srgb, var(--accent) 16%, #ffffff);
+  color: #c2410c;
+}
+
+.badge.st-invalid {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.badge.st-withdrawn {
+  background: #eef2f7;
+  color: var(--secondary);
+}
+
+.ticket.st-invalid {
+  border-color: #fecaca;
+  background: #fffafa;
+}
+
+.ticket.st-withdrawn {
+  opacity: 0.72;
+}
+
+.empty {
+  margin: 0;
+  color: #94a3b8;
+}
+
+.archived {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 13px;
+}
+
+.ring-filter {
+  max-width: 320px;
+  margin-bottom: 14px;
+}
+
+.log {
+  display: grid;
+  grid-template-columns: 84px 88px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+.log-time {
+  color: var(--secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.log-action {
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.log-detail {
+  color: #374151;
+  line-height: 1.55;
+}
+
+.reset {
+  justify-self: start;
+  margin-top: 6px;
+}
+
+@media (max-width: 860px) {
+  .edit-box {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket {
+    grid-template-columns: 1fr auto;
+  }
+
+  .ticket .cage,
+  .ticket .trip-name {
+    display: none;
+  }
+
+  .log {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
 }
 
 @media (max-width: 860px) {
